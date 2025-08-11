@@ -761,9 +761,10 @@
 
           <div>
             <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
-            <form class="space-y-6" id="myForm">
+            <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6" id="myForm">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
+                  <input type="hidden" name="access_key" value="cb8512d1-260f-4497-af8d-00bb91f792c3">
                   <!-- <label for="name" class="block mb-2 font-medium">Your Name</label> -->
                   <input
                     type="text"
@@ -803,6 +804,7 @@
               </div>
               <button
                 type="submit"
+                onclick="alert('Form submitted successfully!')"
                 class="px-8 py-3 rounded-full btn-primary font-medium w-full"
               >
                 Send Message <i class="fas fa-paper-plane ml-2"></i>
@@ -957,50 +959,6 @@
 
 
     </script>
-    <script type="module">
-  // Import the functions you need from the SDKs
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-  // Your Firebase config
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "portfolio-bba37.firebaseapp.com",
-    projectId: "portfolio-bba37",
-    storageBucket: "portfolio-bba37.firebasestorage.app",
-    messagingSenderId: "518365045751",
-    appId: "1:518365045751:web:697cc39f72228236a784f2",
-    measurementId: "G-KKCVET2GJE"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const db = getFirestore(app); // ✅ Create `db` instance here
-
-  const myForm = document.getElementById('myForm');
-
-  myForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-
-    try {
-      const docRef = await addDoc(collection(db, "submissions"), {
-        name: name,
-        email: email,
-        message: message
-      });
-      console.log("Document written with ID: ", docRef.id);
-      alert("Message submitted!");
-      myForm.reset();
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  });
-</script>
+    
   </body>
 </html>
